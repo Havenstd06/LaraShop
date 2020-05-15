@@ -1,0 +1,39 @@
+<?php
+
+use App\Product;
+use Illuminate\Routing\RouteGroup;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+
+// Product Routes
+Route::get('/product', 'ProductController@index')->name('products.index');
+Route::get('/product/{slug}', 'ProductController@show')->name('products.show');
+
+// Cart Routes
+Route::prefix('/cart')->group(function () {
+  Route::get('/', 'CartController@index')->name('cart.index');
+  Route::post('/add', 'CartController@store')->name('cart.store');
+  Route::patch('/{rowId}', 'CartController@update')->name('cart.update');
+  Route::delete('/remove/{rowId}', 'CartController@destroy')->name('cart.destroy');
+});
+
+// Checkout Routes
+Route::prefix('/payment')->group(function () {
+  Route::get('/', 'CheckoutController@index')->name('checkout.index');
+  Route::post('/', 'CheckoutController@store')->name('checkout.store');
+  Route::get('/thankyou', 'CheckoutController@thankyou')->name('checkout.thankyou');
+});
