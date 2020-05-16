@@ -18,9 +18,9 @@ class ProductController extends Controller
         if (request()->categorie) {
             $products = Product::with('categories')->whereHas('categories', function ($query) {
                 $query->where('slug', request()->categorie);
-            })->paginate(10);
+            })->orderBy('created_at', 'DESC')->paginate(10);
         } else {
-            $products = Product::with('categories')->paginate(10);
+            $products = Product::with('categories')->orderBy('created_at', 'DESC')->paginate(10);
         }
 
         return view('products.index', [
@@ -41,5 +41,25 @@ class ProductController extends Controller
             'product' => $product,
             'stock' => $stock,
         ]);
+    }
+
+    /**
+     * Search
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search()
+    {
+        request()->validate([
+            'search' => 'required|min:3'
+        ]);
+        $r = request()->input('search');
+
+        $products = Product::where('title', 'like', "%$r%")
+                ->orWhere('subtitle', 'like', "%$r%")
+                ->orWhere('description', 'like', "%$r%")
+                ->paginate(6);
+
+        return view('products.search')->with('products', $products);
     }
 }

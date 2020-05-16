@@ -47,6 +47,15 @@
 #carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
   color: #000;
   /*Set to match the Tailwind colour you want the active one to be */
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.mt-5px {
+  margin-top: 5px;
 }/* Tailwind */
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

@@ -20,31 +20,29 @@
                 @endforeach
             </div>
           <h1 class="text-xl font-bold text-gray-900 uppercase">{{ $product->title }}</h1>
-          <p class="mt-2 text-sm text-gray-600">{{ $product->description }}</p>
+          <p class="mt-2 text-sm text-gray-600">{!! $product->description !!}</p>
         </div>
-        <img class="object-cover w-full h-56 mt-2" src="{{ $product->image }}" alt="{{ $product->title }}">
+        <img class="object-cover w-full h-56 mt-2" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}">
+        @if ($product->images)
+            @foreach (json_decode($product->images, true) as $image)
+            <img class="object-cover w-full h-32 mt-2" src="{{ asset('storage/' . $image) }}" alt="{{ $product->title }}">
+            @endforeach
+        @endif
         <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
             <h1 class="text-xl font-bold text-gray-200">{{ $product->getPrice() }}</h1>
-            @auth
-                @if ($stock === 'Available')
-                <form action="{{ route('cart.store') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                    <button type="submit" class="px-3 py-1 text-sm font-semibold text-gray-900 bg-gray-200 rounded">
-                        Add to card
-                    </button>
-                </form>
-                @else
-                <a href="{{ route('home') }}" class="px-3 py-1 text-sm font-semibold text-gray-900 bg-gray-200 rounded">
-                    Out of stock
-                </a>
-                @endif
-
+            @if ($stock === 'Available')
+            <form action="{{ route('cart.store') }}" method="POST">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <button type="submit" class="px-3 py-1 text-sm font-semibold text-gray-900 bg-gray-200 rounded">
+                    Add to card
+                </button>
+            </form>
             @else
-            <a href="{{ route('login') }}" class="px-3 py-1 text-sm font-semibold text-gray-900 bg-gray-200 rounded">
-                Login
-            </a>
-            @endauth
+            <button class="px-3 py-1 text-sm font-semibold text-gray-900 bg-gray-200 rounded cursor-not-allowed" disabled>
+                Out of stock
+            </button>
+            @endif
         </div>
     </div>
 </div>

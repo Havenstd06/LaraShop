@@ -6,24 +6,7 @@
 
 @section('content')
 <section class="pt-4 bg-white">
-    @if (session('success'))
-        <div class="flex justify-center">
-            <div class="relative w-1/2 px-4 py-3 mb-4 text-green-700 bg-green-100 border border-green-400 rounded">
-                <strong class="font-bold">YEAH!</strong>
-                <span class="block sm:inline">{{ session('success') }}</span>
-            </div>
-        </div>
-    @endif
-    @if (session('warning'))
-        <div class="flex justify-center">
-            <div class="relative w-1/2 px-4 py-3 mb-4 text-orange-700 bg-orange-100 border border-orange-400 rounded">
-                <strong class="font-bold">Hmm!</strong>
-                <span class="block sm:inline">{{ session('warning') }}</span>
-            </div>
-        </div>
-    @endif
-
-    <div class="container relative mx-auto carousel" style="max-width:1600px;">
+    <div class="container relative z-0 mx-auto carousel" style="max-width:1600px;">
         <div class="relative w-full overflow-hidden carousel-inner">
             <!--Slide 1-->
             <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
@@ -130,7 +113,7 @@
             @endforeach
         </div>
         <a href="{{ route('products.show', $product->slug) }}">
-            <img class="hover:grow hover:shadow-lg" src="{{ $product->image }}"/>
+            <img class="hover:grow hover:shadow-lg" src="{{ asset('storage/' . $product->image) }}"/>
         </a>  
         <div class="flex items-center justify-between pt-3">
           <p>{{ $product->title }}</p>

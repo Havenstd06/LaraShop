@@ -17,23 +17,43 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+// Home Route
 Route::get('/', 'HomeController@index')->name('home');
 
 // Product Routes
-Route::get('/product', 'ProductController@index')->name('products.index');
-Route::get('/product/{slug}', 'ProductController@show')->name('products.show');
-
-// Cart Routes
-Route::prefix('/cart')->group(function () {
-  Route::get('/', 'CartController@index')->name('cart.index');
-  Route::post('/add', 'CartController@store')->name('cart.store');
-  Route::patch('/{rowId}', 'CartController@update')->name('cart.update');
-  Route::delete('/remove/{rowId}', 'CartController@destroy')->name('cart.destroy');
+Route::prefix('/product')->group(function () {
+  Route::get('/', 'ProductController@index')->name('products.index');
+  Route::get('/{slug}', 'ProductController@show')->name('products.show');
+  // Route::get('/search', 'ProductController@search')->name('products.search');
 });
+Route::get('/search', 'ProductController@search')->name('products.search');
 
-// Checkout Routes
-Route::prefix('/payment')->group(function () {
-  Route::get('/', 'CheckoutController@index')->name('checkout.index');
-  Route::post('/', 'CheckoutController@store')->name('checkout.store');
-  Route::get('/thankyou', 'CheckoutController@thankyou')->name('checkout.thankyou');
+
+Route::group(['middleware' => ['auth']], function () {
+
+  // Cart Routes
+  Route::prefix('/cart')->group(function () {
+    Route::get('/', 'CartController@index')->name('cart.index');
+    Route::post('/add', 'CartController@store')->name('cart.store');
+    Route::patch('/{rowId}', 'CartController@update')->name('cart.update');
+    Route::delete('/remove/{rowId}', 'CartController@destroy')->name('cart.destroy');
+  });
+
+  // Checkout Routes
+  Route::prefix('/payment')->group(function () {
+    Route::get('/', 'CheckoutController@index')->name('checkout.index');
+    Route::post('/', 'CheckoutController@store')->name('checkout.store');
+    Route::get('/thankyou', 'CheckoutController@thankyou')->name('checkout.thankyou');
+  });
+
+  // Users Routes
+  Route::prefix('/users')->group(function () {
+    Route::get('/orders', 'UserController@orders')->name('user.orders');
+  });
+
+  // Voyager Routes
+  Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+  });
+
 });

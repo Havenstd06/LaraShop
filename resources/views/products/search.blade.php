@@ -5,7 +5,9 @@
 @endsection
 
 @section('content')
-
+@if (request()->search)
+    <h2 class="pt-4 text-lg font-medium text-center md:text-left lg:ml-12 md:ml-4 xl:ml-24">{{ $products->total() }} result(s) for the search "{{ request()->search }}"</h2>
+@endif
 <div class="flex justify-center">
   <div class="grid grid-flow-row grid-cols-5 grid-rows-2 gap-4">
     @foreach ($products as $product)
@@ -16,7 +18,7 @@
                         <a href="{{ route('products.index', ['categorie' => $category->slug]) }}">
                             <span class="text-sm text-blue-600">
                                 {{ $category->name }}{{ $loop->last ? '' : ', ' }}
-                            </span>
+                            </span> 
                         </a>    
                     @endforeach
                 </div>
