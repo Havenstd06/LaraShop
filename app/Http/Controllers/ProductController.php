@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
-use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ProductController extends Controller
 {
@@ -14,7 +13,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         if (request()->categorie) {
             $products = Product::with('categories')->whereHas('categories', function ($query) {
                 $query->where('slug', request()->categorie);
@@ -27,6 +26,7 @@ class ProductController extends Controller
             'products' => $products,
         ]);
     }
+
     /**
      * Show the application dashboard.
      *
@@ -44,14 +44,14 @@ class ProductController extends Controller
     }
 
     /**
-     * Search
+     * Search.
      *
      * @return \Illuminate\Http\Response
      */
     public function search()
     {
         request()->validate([
-            'search' => 'required|min:3'
+            'search' => 'required|min:3',
         ]);
         $r = request()->input('search');
 

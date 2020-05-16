@@ -21,10 +21,10 @@ class ProductsSeeder extends Seeder
                 'subtitle' => $faker->sentence(3),
                 'description' => $faker->text,
                 'price' => $faker->numberBetween(15, 300) * 100,
-                'image' => "products\\May2020\\" . $faker->image('public/storage/products/May2020', 400, 300, null, false) 
+                'image' => 'products\\May2020\\'.$faker->image('public/storage/products/May2020', 400, 300, null, false),
             ])->categories()->attach([
                 rand(1, 4),
-                rand(1, 4)
+                rand(1, 4),
             ]);
         }
     }

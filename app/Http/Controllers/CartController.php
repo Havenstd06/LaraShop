@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Coupon;
 use App\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
@@ -48,7 +48,7 @@ class CartController extends Controller
         if ($duplicata->isNotEmpty()) {
             return redirect()->route('home')->with('warning', 'The product is already added.');
         }
-         
+
         $product = Product::find($request->product_id);
 
         Cart::add($product->id, $product->title, 1, $product->price)->associate('App\Product');
@@ -62,13 +62,13 @@ class CartController extends Controller
 
         $coupon = Coupon::where('code', $code)->first();
 
-        if (!$coupon) {
+        if (! $coupon) {
             return redirect()->back()->with('error', 'Invalid Coupon.');
         }
 
         $request->session()->put('coupon', [
             'code'      => $coupon->code,
-            'discount'  => $coupon->discount(Cart::subtotal())
+            'discount'  => $coupon->discount(Cart::subtotal()),
         ]);
 
         return redirect()->back()->with('success', 'Coupon Applied.');
@@ -113,17 +113,20 @@ class CartController extends Controller
 
         if ($validates->fails()) {
             Session::flash('error', 'The quantity must be between 1 and 10.');
+
             return response()->json(['error' => 'Cart Quantity Has Not Been Updated']);
         }
 
         if ($data['qty'] > $data['stock']) {
             Session::flash('error', 'The requested quantity of this product is not available.');
+
             return response()->json(['error' => 'Product Quantity Not Available']);
         }
 
         Cart::update($rowId, $data['qty']);
 
-        Session::flash('success', 'Cart Quantity Has Been Updated to ' . $data['qty'] . '.');
+        Session::flash('success', 'Cart Quantity Has Been Updated to '.$data['qty'].'.');
+
         return response()->json(['success' => 'Cart Quantity Has Been Updated']);
     }
 

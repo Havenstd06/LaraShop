@@ -14,27 +14,27 @@ class CategoriesSeeder extends Seeder
     {
         Category::Create([
             'name' => 'High Tech',
-            'slug' => 'high-tech'
+            'slug' => 'high-tech',
         ]);
 
         Category::Create([
             'name' => 'Books',
-            'slug' => 'books'
+            'slug' => 'books',
         ]);
 
         Category::Create([
             'name' => 'Furniture',
-            'slug' => 'furniture'
+            'slug' => 'furniture',
         ]);
 
         Category::Create([
             'name' => 'Games',
-            'slug' => 'games'
+            'slug' => 'games',
         ]);
 
         Category::Create([
             'name' => 'Foods',
-            'slug' => 'foods'
+            'slug' => 'foods',
         ]);
     }
 }
