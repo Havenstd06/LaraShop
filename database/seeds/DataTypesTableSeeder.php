@@ -11,7 +11,7 @@ class DataTypesTableSeeder extends Seeder
     public function run()
     {
         $dataType = $this->dataType('slug', 'users');
-        if (!$dataType->exists) {
+        if (! $dataType->exists) {
             $dataType->fill([
                 'name'                  => 'users',
                 'display_name_singular' => __('voyager::seeders.data_types.user.singular'),
@@ -26,7 +26,7 @@ class DataTypesTableSeeder extends Seeder
         }
 
         $dataType = $this->dataType('slug', 'menus');
-        if (!$dataType->exists) {
+        if (! $dataType->exists) {
             $dataType->fill([
                 'name'                  => 'menus',
                 'display_name_singular' => __('voyager::seeders.data_types.menu.singular'),
@@ -40,7 +40,7 @@ class DataTypesTableSeeder extends Seeder
         }
 
         $dataType = $this->dataType('slug', 'roles');
-        if (!$dataType->exists) {
+        if (! $dataType->exists) {
             $dataType->fill([
                 'name'                  => 'roles',
                 'display_name_singular' => __('voyager::seeders.data_types.role.singular'),
@@ -54,7 +54,7 @@ class DataTypesTableSeeder extends Seeder
         }
 
         $dataType = $this->dataType('slug', 'products');
-        if (!$dataType->exists) {
+        if (! $dataType->exists) {
             $dataType->fill([
                 'name'                  => 'products',
                 'display_name_singular' => 'Product',
@@ -74,7 +74,7 @@ class DataTypesTableSeeder extends Seeder
         }
 
         $dataType = $this->dataType('slug', 'categories');
-        if (!$dataType->exists) {
+        if (! $dataType->exists) {
             $dataType->fill([
                 'name'                  => 'categories',
                 'display_name_singular' => 'Category',
@@ -94,7 +94,7 @@ class DataTypesTableSeeder extends Seeder
         }
 
         $dataType = $this->dataType('slug', 'orders');
-        if (!$dataType->exists) {
+        if (! $dataType->exists) {
             $dataType->fill([
                 'name'                  => 'orders',
                 'display_name_singular' => 'Order',
@@ -114,7 +114,7 @@ class DataTypesTableSeeder extends Seeder
         }
 
         $dataType = $this->dataType('slug', 'coupons');
-        if (!$dataType->exists) {
+        if (! $dataType->exists) {
             $dataType->fill([
                 'name'                  => 'coupons',
                 'display_name_singular' => 'Coupon',

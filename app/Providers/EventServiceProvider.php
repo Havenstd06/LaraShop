@@ -19,14 +19,14 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         'cart.added' => [
-            'App\Listeners\CartUpdatedListener'
+            'App\Listeners\CartUpdatedListener',
         ],
         'cart.updated' => [
-            'App\Listeners\CartUpdatedListener'
+            'App\Listeners\CartUpdatedListener',
         ],
         'cart.removed' => [
-            'App\Listeners\CartUpdatedListener'
-        ]
+            'App\Listeners\CartUpdatedListener',
+        ],
     ];
 
     /**

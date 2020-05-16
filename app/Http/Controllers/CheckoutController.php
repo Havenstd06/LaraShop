@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use DateTime;
-use App\Order;
 use App\Coupon;
+use App\Order;
 use App\Product;
-use Stripe\Stripe;
-use Stripe\PaymentIntent;
-use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use DateTime;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Session;
+use Stripe\PaymentIntent;
+use Stripe\Stripe;
 
 class CheckoutController extends Controller
 {
@@ -37,14 +37,14 @@ class CheckoutController extends Controller
 
         $intent = PaymentIntent::create([
             'amount' => round($total),
-            'currency' => 'eur'
+            'currency' => 'eur',
         ]);
 
         $clientSecret = Arr::get($intent, 'client_secret');
 
         return view('checkout.index', [
             'clientSecret' => $clientSecret,
-            'total' => $total
+            'total' => $total,
         ]);
     }
 
@@ -68,6 +68,7 @@ class CheckoutController extends Controller
     {
         if ($this->checkIfNotAvailable()) {
             Session::flash('error', 'A product in your cart is no longer available.');
+
             return response()->json(['success' => false], 400);
         }
 
@@ -86,9 +87,9 @@ class CheckoutController extends Controller
         $i = 0;
 
         foreach (Cart::content() as $product) {
-            $products['product_' . $i][] = $product->model->title;
-            $products['product_' . $i][] = $product->model->price;
-            $products['product_' . $i][] = $product->qty;
+            $products['product_'.$i][] = $product->model->title;
+            $products['product_'.$i][] = $product->model->price;
+            $products['product_'.$i][] = $product->qty;
             $i++;
         }
 
@@ -100,6 +101,7 @@ class CheckoutController extends Controller
             $this->updateStock();
             Cart::destroy();
             Session::flash('success', 'Your order has been taken into account.');
+
             return response()->json(['success' => 'Payment Intent Succeeded']);
         } else {
             return response()->json(['error' => 'Payment Intent Not Succeeded']);
