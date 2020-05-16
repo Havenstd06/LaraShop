@@ -17,6 +17,7 @@ class DataRowsTableSeeder extends Seeder
         $productDataType   = DataType::where('slug', 'products')->firstOrFail();
         $categorieDataType = DataType::where('slug', 'categories')->firstOrFail();
         $orderDataType     = DataType::where('slug', 'orders')->firstOrFail();
+        $couponDataType    = DataType::where('slug', 'coupons')->firstOrFail();
 
         $dataRow = $this->dataRow($userDataType, 'id');
         if (!$dataRow->exists) {
@@ -727,6 +728,82 @@ class DataRowsTableSeeder extends Seeder
         }
 
         $dataRow = $this->dataRow($orderDataType, 'updated_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'Updated At',
+                'required'     => 0,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'order'        => 8,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($couponDataType, 'id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'number',
+                'display_name' => 'Id',
+                'required'     => 1,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'order'        => 1,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($couponDataType, 'code');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text',
+                'display_name' => 'Code',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'order'        => 2,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($couponDataType, 'percent_off');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'number',
+                'display_name' => 'Percent Off',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => ['min' => 1, 'max' => 100],
+                'order'        => 3,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($couponDataType, 'created_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'Created At',
+                'required'     => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'order'        => 7,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($couponDataType, 'updated_at');
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'timestamp',

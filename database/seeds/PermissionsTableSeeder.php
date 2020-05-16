@@ -38,5 +38,7 @@ class PermissionsTableSeeder extends Seeder
         Permission::generateFor('categories');
 
         Permission::generateFor('orders');
+
+        Permission::generateFor('coupons');
     }
 }

@@ -18,23 +18,23 @@ class CategoriesSeeder extends Seeder
         ]);
 
         Category::Create([
-            'name' => 'Livres',
-            'slug' => 'livres'
+            'name' => 'Books',
+            'slug' => 'books'
         ]);
 
         Category::Create([
-            'name' => 'Meubles',
-            'slug' => 'meubles'
+            'name' => 'Furniture',
+            'slug' => 'furniture'
         ]);
 
         Category::Create([
-            'name' => 'Jeux',
-            'slug' => 'jeux'
+            'name' => 'Games',
+            'slug' => 'games'
         ]);
 
         Category::Create([
-            'name' => 'Nourritures',
-            'slug' => 'nourritures'
+            'name' => 'Foods',
+            'slug' => 'foods'
         ]);
     }
 }

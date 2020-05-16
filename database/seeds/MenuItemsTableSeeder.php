@@ -43,7 +43,7 @@ class MenuItemsTableSeeder extends Seeder
                 'icon_class' => 'voyager-images',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 5,
+                'order'      => 8,
             ])->save();
         }
 
@@ -59,7 +59,7 @@ class MenuItemsTableSeeder extends Seeder
                 'icon_class' => 'voyager-person',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 3,
+                'order'      => 6,
             ])->save();
         }
 
@@ -75,7 +75,7 @@ class MenuItemsTableSeeder extends Seeder
                 'icon_class' => 'voyager-lock',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 2,
+                'order'      => 7,
             ])->save();
         }
 
@@ -170,7 +170,7 @@ class MenuItemsTableSeeder extends Seeder
                 'icon_class' => 'voyager-settings',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 14,
+                'order'      => 10,
             ])->save();
         }
 
@@ -186,7 +186,7 @@ class MenuItemsTableSeeder extends Seeder
                 'icon_class' => 'voyager-bag',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 15,
+                'order'      => 2,
             ])->save();
         }
 
@@ -202,7 +202,7 @@ class MenuItemsTableSeeder extends Seeder
                 'icon_class' => 'voyager-tag',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 15,
+                'order'      => 4,
             ])->save();
         }
 
@@ -218,7 +218,23 @@ class MenuItemsTableSeeder extends Seeder
                 'icon_class' => 'voyager-buy',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 15,
+                'order'      => 3,
+            ])->save();
+        }
+
+        $menuItem = MenuItem::firstOrNew([
+            'menu_id' => $menu->id,
+            'title'   => 'Coupons',
+            'url'     => '',
+            'route'   => 'voyager.coupons.index',
+        ]);
+        if (!$menuItem->exists) {
+            $menuItem->fill([
+                'target'     => '_self',
+                'icon_class' => 'voyager-gift',
+                'color'      => null,
+                'parent_id'  => null,
+                'order'      => 5,
             ])->save();
         }
     }

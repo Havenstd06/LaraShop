@@ -112,6 +112,26 @@ class DataTypesTableSeeder extends Seeder
                 ],
             ])->save();
         }
+
+        $dataType = $this->dataType('slug', 'coupons');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'coupons',
+                'display_name_singular' => 'Coupon',
+                'display_name_plural'   => 'Coupons',
+                'icon'                  => 'voyager-gift',
+                'model_name'            => 'App\Coupon',
+                'controller'            => null,
+                'generate_permissions'  => 1,
+                'description'           => null,
+                'details'               => [
+                    'order_column'          => null,
+                    'order_display_column'  => null,
+                    'order_direction'       => 'asc',
+                    'default_search_key'    => null,
+                ],
+            ])->save();
+        }
     }
 
     /**
