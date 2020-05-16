@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Coupon;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -17,9 +18,8 @@ class CartController extends Controller
      */
     public function index()
     {
-
         return view('cart.index', [
-            
+            'coupon' => new Coupon,
         ]);
     }
 
@@ -54,6 +54,24 @@ class CartController extends Controller
         Cart::add($product->id, $product->title, 1, $product->price)->associate('App\Product');
 
         return redirect()->route('home')->with('success', 'The product has been successfully added.');
+    }
+
+    public function storeCoupon(Request $request)
+    {
+        $code = $request->get('code');
+
+        $coupon = Coupon::where('code', $code)->first();
+
+        if (!$coupon) {
+            return redirect()->back()->with('error', 'Invalid Coupon.');
+        }
+
+        $request->session()->put('coupon', [
+            'code'      => $coupon->code,
+            'discount'  => $coupon->discount(Cart::subtotal())
+        ]);
+
+        return redirect()->back()->with('success', 'Coupon Applied.');
     }
 
     /**
@@ -120,5 +138,12 @@ class CartController extends Controller
         Cart::remove($rowId);
 
         return back()->with('success', 'The product has been deleted from your cart.');
+    }
+
+    public function destroyCoupon()
+    {
+        request()->session()->forget('coupon');
+
+        return redirect()->back()->with('success', 'The coupon has been withdrawn.');
     }
 }

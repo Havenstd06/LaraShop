@@ -47,7 +47,7 @@
     <div id="card-errors" role="alert"></div>
     <div class="mt-4">
       <button id="submit" class="block px-6 py-3 mx-auto mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow hover:bg-gray-700 focus:shadow-outline focus:outline-none">
-        Pay
+        Pay {{ getPrice($total) }}
       </button>
     </div>
   </form>

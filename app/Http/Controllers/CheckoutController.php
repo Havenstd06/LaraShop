@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use App\Order;
+use App\Coupon;
 use App\Product;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
@@ -26,15 +27,24 @@ class CheckoutController extends Controller
         }
         Stripe::setApiKey('sk_test_4RukOADf0k7JnwqJaZoOd3IZ0086ufmCu1');
 
+        $coupon = new Coupon;
+
+        if (request()->session()->has('coupon')) {
+            $total = $coupon->couponTotal();
+        } else {
+            $total = Cart::total();
+        }
+
         $intent = PaymentIntent::create([
-            'amount' => round(Cart::total()),
+            'amount' => round($total),
             'currency' => 'eur'
         ]);
 
         $clientSecret = Arr::get($intent, 'client_secret');
 
         return view('checkout.index', [
-            'clientSecret' => $clientSecret
+            'clientSecret' => $clientSecret,
+            'total' => $total
         ]);
     }
 

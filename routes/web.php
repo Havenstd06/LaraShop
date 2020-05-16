@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/add', 'CartController@store')->name('cart.store');
     Route::patch('/{rowId}', 'CartController@update')->name('cart.update');
     Route::delete('/remove/{rowId}', 'CartController@destroy')->name('cart.destroy');
+    Route::post('/coupon', 'CartController@storeCoupon')->name('cart.store.coupon');
+    Route::delete('/coupon', 'CartController@destroyCoupon')->name('cart.destroy.coupon');
   });
 
   // Checkout Routes
