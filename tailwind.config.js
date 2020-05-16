@@ -4,7 +4,11 @@ module.exports = {
     './resources/css/**/*.css',
   ],
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        asphalt: '#0E3758',
+      }
+    }
   },
   variants: {},
   plugins: [

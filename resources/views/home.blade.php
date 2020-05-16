@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>{{ config('app.name', 'Laravel') }} — Home Page</title>
+    <title>{{ config('app.name', 'Laravel') }} — A Laravel 7 Shop</title>
 @endsection
 
 @section('content')

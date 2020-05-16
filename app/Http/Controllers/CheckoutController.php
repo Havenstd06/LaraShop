@@ -25,7 +25,7 @@ class CheckoutController extends Controller
         if (Cart::count() <= 0) {
             return redirect()->route('home');
         }
-        Stripe::setApiKey('sk_test_4RukOADf0k7JnwqJaZoOd3IZ0086ufmCu1');
+        Stripe::setApiKey(env('STRIPE_SECRET_API_KEY', null));
 
         $coupon = new Coupon;
 

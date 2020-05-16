@@ -13,8 +13,8 @@ class CouponsSeeder extends Seeder
     public function run()
     {
         Coupon::create([
-            'code'          => '100off',
-            'percent_off'   => '100',
+            'code'          => '90off',
+            'percent_off'   => '90',
         ]);
 
         Coupon::create([

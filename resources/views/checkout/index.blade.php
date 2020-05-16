@@ -57,7 +57,7 @@
 
 @section('extra-js')
 <script>
-  var stripe = Stripe('pk_test_jRHHieFHs5bAJOvLZPkkLRAv00yh3lb0yL');
+  var stripe = Stripe("{{ env('STRIPE_PUBLIC_API_KEY', null) }}");
   var elements = stripe.elements();
 
   var style = {
