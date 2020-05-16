@@ -52,6 +52,66 @@ class DataTypesTableSeeder extends Seeder
                 'description'           => '',
             ])->save();
         }
+
+        $dataType = $this->dataType('slug', 'products');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'products',
+                'display_name_singular' => 'Product',
+                'display_name_plural'   => 'Products',
+                'icon'                  => 'voyager-bag',
+                'model_name'            => 'App\Product',
+                'controller'            => null,
+                'generate_permissions'  => 1,
+                'description'           => null,
+                'details'               => [
+                    'order_column'          => null,
+                    'order_display_column'  => null,
+                    'order_direction'       => 'asc',
+                    'default_search_key'    => null,
+                ],
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'categories');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'categories',
+                'display_name_singular' => 'Category',
+                'display_name_plural'   => 'Categories',
+                'icon'                  => 'voyager-tag',
+                'model_name'            => 'App\Category',
+                'controller'            => null,
+                'generate_permissions'  => 1,
+                'description'           => null,
+                'details'               => [
+                    'order_column'          => null,
+                    'order_display_column'  => null,
+                    'order_direction'       => 'asc',
+                    'default_search_key'    => null,
+                ],
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'orders');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'orders',
+                'display_name_singular' => 'Order',
+                'display_name_plural'   => 'Orders',
+                'icon'                  => 'voyager-buy',
+                'model_name'            => 'App\Order',
+                'controller'            => null,
+                'generate_permissions'  => 1,
+                'description'           => null,
+                'details'               => [
+                    'order_column'          => null,
+                    'order_display_column'  => null,
+                    'order_direction'       => 'asc',
+                    'default_search_key'    => null,
+                ],
+            ])->save();
+        }
     }
 
     /**

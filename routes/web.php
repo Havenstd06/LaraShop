@@ -51,9 +51,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/orders', 'UserController@orders')->name('user.orders');
   });
 
-  // Voyager Routes
-  Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-  });
+});
 
+// Voyager Routes
+Route::group(['prefix' => 'admin'], function () {
+  Voyager::routes();
 });
