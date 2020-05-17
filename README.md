@@ -2,7 +2,7 @@
 
 A simple shop made with Laravel 7 & Tailwind CSS. (Still in development)
 
-<img src="https://limg.app/i/MrWHJbm.png/500">
+![cover](https://user-images.githubusercontent.com/33732634/82132743-6371e380-97e3-11ea-8223-250cde809488.png)
 
 [![StyleCI](https://github.styleci.io/repos/264305448/shield?branch=master)](https://github.styleci.io/repos/264305448)
 [![Laravel](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
