@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 class UserController extends Controller
 {
-    public function orders()
+    public function index()
     {
         $user = auth()->user();
 
-        return view('user.orders', [
+        return view('customer.index', [
             'user' => $user,
         ]);
     }

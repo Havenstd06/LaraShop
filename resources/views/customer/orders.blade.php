@@ -1,7 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
-
 <div class="flex justify-center mt-20">
  @foreach (Auth()->user()->orders as $order)
 <div class="py-6">
@@ -29,5 +25,3 @@
 </div>
  @endforeach
 </div>
-
-@endsection

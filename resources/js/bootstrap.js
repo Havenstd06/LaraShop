@@ -1,4 +1,6 @@
 window._ = require('lodash');
+var Turbolinks = require("turbolinks")
+Turbolinks.start()
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

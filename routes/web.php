@@ -47,8 +47,8 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     // Users Routes
-    Route::prefix('/users')->group(function () {
-        Route::get('/orders', 'UserController@orders')->name('user.orders');
+    Route::prefix('/customer')->group(function () {
+        Route::get('/', 'UserController@index')->name('customer.index');
     });
 });
 
