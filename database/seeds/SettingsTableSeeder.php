@@ -135,7 +135,6 @@ class SettingsTableSeeder extends Seeder
      * [setting description].
      *
      * @param [type] $key [description]
-     *
      * @return [type] [description]
      */
     protected function findSetting($key)
