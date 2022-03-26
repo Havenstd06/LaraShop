@@ -824,7 +824,6 @@ class DataRowsTableSeeder extends Seeder
      *
      * @param [type] $type  [description]
      * @param [type] $field [description]
-     *
      * @return [type] [description]
      */
     protected function dataRow($type, $field)
