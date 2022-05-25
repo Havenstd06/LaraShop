@@ -139,7 +139,6 @@ class DataTypesTableSeeder extends Seeder
      *
      * @param [type] $field [description]
      * @param [type] $for   [description]
-     *
      * @return [type] [description]
      */
     protected function dataType($field, $for)
